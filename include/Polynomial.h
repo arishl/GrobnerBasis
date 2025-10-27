@@ -15,8 +15,8 @@ public:
     using CoefVec = std::vector<K>;
 
     Polynomial() = default;
-    Polynomial(const MonoVec& mono_vec, const CoefVec& coef_vec);
-    Polynomial(MonoVec&& mono_vec, CoefVec&& coef_vec) noexcept;
+    Polynomial(int variables, const MonoVec& mono_vec, const CoefVec& coef_vec);
+    Polynomial(int variables, MonoVec&& mono_vec, CoefVec&& coef_vec) noexcept;
     Polynomial(const Polynomial&) = default;
     Polynomial(Polynomial&&) = default;
     Polynomial& operator=(const Polynomial&) = default;
@@ -30,9 +30,12 @@ public:
     Polynomial operator-(Polynomial const& p) const;
     Polynomial operator*(Polynomial const& p) const;
 
+    void clean_polynomial();
+
 private:
     CoefVec coef_vec_;
     MonoVec mono_vec_;
+    int variables_;
 };
 
 #include "../src/Polynomial.tpp"

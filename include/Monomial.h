@@ -25,6 +25,10 @@ public:
     Monomial& operator=(Monomial&& other) = default;
     ~Monomial() = default;
 
+    bool operator==(const Monomial& other) const;
+
+    int get_variables() const;
+
     std::string stringify() const;
     friend std::ostream& operator<<(std::ostream&, const Monomial&);
 

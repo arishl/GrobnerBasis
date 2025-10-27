@@ -15,6 +15,16 @@ Monomial::Monomial(std::initializer_list<int> init_list)
 {
 }
 
+bool Monomial::operator==(const Monomial& other) const
+{
+    return expo_vec_ == other.expo_vec_;
+}
+
+int Monomial::get_variables() const
+{
+    return expo_vec_.size();
+}
+
 std::string Monomial::stringify() const
 {
     std::string hold;
