@@ -25,7 +25,7 @@ public:
     Monomial& operator=(Monomial&& other) = default;
     ~Monomial() = default;
 
-    void print_monomial() const;
+    std::string stringify() const;
     friend std::ostream& operator<<(std::ostream&, const Monomial&);
 
 private:

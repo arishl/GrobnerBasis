@@ -15,27 +15,22 @@ Monomial::Monomial(std::initializer_list<int> init_list)
 {
 }
 
-void Monomial::print_monomial() const
+std::string Monomial::stringify() const
 {
-    std::cout << "(";
+    std::string hold;
+    hold = hold + "(";
     for (size_t i = 0; i < expo_vec_.size(); ++i)
     {
-        std::cout << expo_vec_[i];
+        hold = hold + std::to_string(expo_vec_[i]);
         if (i + 1 < expo_vec_.size())
-            std::cout << ", ";
+            hold = hold + ", ";
     }
-    std::cout << ")";
+    hold = hold + ")";
+    return hold;
 }
 
 std::ostream& operator<<(std::ostream& os, const Monomial& monomial)
 {
-    os << "(";
-    for (size_t i = 0; i < monomial.expo_vec_.size(); ++i)
-    {
-        os << monomial.expo_vec_[i];
-        if (i + 1 < monomial.expo_vec_.size())
-            os << ", ";
-    }
-    os << ")";
+    os << monomial.stringify();
     return os;
 }
