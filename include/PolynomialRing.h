@@ -1,0 +1,8 @@
+//
+// Created by Aris Lemmenes on 10/26/25.
+//
+
+#ifndef GROBNERBASIS_POLYNOMIALRING_H
+#define GROBNERBASIS_POLYNOMIALRING_H
+
+#endif //GROBNERBASIS_POLYNOMIALRING_H

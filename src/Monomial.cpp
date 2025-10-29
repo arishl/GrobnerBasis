@@ -25,6 +25,12 @@ int Monomial::get_variables() const
     return expo_vec_.size();
 }
 
+const Monomial::ExpoVec& Monomial::get_expo_vec() const
+{
+    return expo_vec_;
+}
+
+
 std::string Monomial::stringify() const
 {
     std::string hold;

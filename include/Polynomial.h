@@ -6,7 +6,7 @@
 #define GROBNERBASIS_POLYNOMIAL_H
 
 #include "Monomial.h"
-
+#include <numeric>
 template <typename K>
 class Polynomial
 {
@@ -31,6 +31,9 @@ public:
     Polynomial operator*(Polynomial const& p) const;
 
     void clean_polynomial();
+    void order_polynomial();
+
+    Polynomial compute_s_polynomial(Polynomial const& p) const;
 
 private:
     CoefVec coef_vec_;

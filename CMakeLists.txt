@@ -7,4 +7,6 @@ add_executable(GrobnerBasis src/main.cpp
         include/Monomial.h
         src/Monomial.cpp
         include/Polynomial.h
-        src/Polynomial.tpp)
+        src/Polynomial.tpp
+        include/Ideal.h
+        include/PolynomialRing.h)

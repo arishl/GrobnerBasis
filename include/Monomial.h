@@ -20,14 +20,19 @@ public:
     Monomial(ExpoVec&& expo_vec) noexcept;
     Monomial(std::initializer_list<int> init_list);
     Monomial(const Monomial& other) = default;
-    Monomial(Monomial&& other) = default;
-    Monomial& operator=(const Monomial& other) = default;
-    Monomial& operator=(Monomial&& other) = default;
+    Monomial(Monomial&&) noexcept = default;
+    Monomial& operator=(const Monomial&) = default;
+    Monomial& operator=(Monomial&&) noexcept = default;
     ~Monomial() = default;
 
     bool operator==(const Monomial& other) const;
 
     int get_variables() const;
+    const ExpoVec& get_expo_vec() const;
+    friend void swap(Monomial& a, Monomial& b) noexcept {
+        using std::swap;
+        swap(a.expo_vec_, b.expo_vec_);
+    }
 
     std::string stringify() const;
     friend std::ostream& operator<<(std::ostream&, const Monomial&);

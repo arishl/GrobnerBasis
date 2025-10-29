@@ -19,6 +19,7 @@ Polynomial<K>::Polynomial(int variables, const MonoVec& mono_vec, const CoefVec&
         }
     }
     this->clean_polynomial();
+    this->order_polynomial();
 }
 
 template <typename K>
@@ -37,6 +38,7 @@ Polynomial<K>::Polynomial(int variables, MonoVec&& mono_vec, CoefVec&& coef_vec)
         }
     }
     this->clean_polynomial();
+    this->order_polynomial();
 }
 
 template <typename K>
@@ -72,4 +74,41 @@ void Polynomial<K>::clean_polynomial()
             }
         }
     }
+}
+template <typename K>
+void Polynomial<K>::order_polynomial()
+{
+    const size_t n = mono_vec_.size();
+    if (n <= 1) return;
+    std::vector<size_t> idx(n);
+    std::iota(idx.begin(), idx.end(), 0);
+    std::sort(idx.begin(), idx.end(),
+        [&](size_t i, size_t j)
+        {
+            const auto& a = mono_vec_[i].get_expo_vec();
+            const auto& b = mono_vec_[j].get_expo_vec();
+            for (size_t u = 0; u < a.size(); ++u)
+            {
+                if (a[u] != b[u])
+                    return a[u] > b[u]; // descending lex order
+            }
+            return false;
+        });
+    MonoVec new_mono_vec;
+    CoefVec new_coef_vec;
+    new_mono_vec.reserve(n);
+    new_coef_vec.reserve(n);
+    for (size_t i = 0; i < n; ++i)
+    {
+        new_mono_vec.push_back(mono_vec_[idx[i]]);
+        new_coef_vec.push_back(coef_vec_[idx[i]]);
+    }
+    mono_vec_ = std::move(new_mono_vec);
+    coef_vec_ = std::move(new_coef_vec);
+}
+
+template <typename K>
+Polynomial<K> Polynomial<K>::compute_s_polynomial(Polynomial const& p) const
+{
+
 }
