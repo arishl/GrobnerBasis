@@ -32,8 +32,9 @@ public:
 
     void clean_polynomial();
     void order_polynomial();
+    std::pair<K, Monomial> get_leading_monomial();
 
-    Polynomial compute_s_polynomial(Polynomial const& p) const;
+    Polynomial compute_s_polynomial(Polynomial const& p1, Polynomial const& p2) const;
 
 private:
     CoefVec coef_vec_;

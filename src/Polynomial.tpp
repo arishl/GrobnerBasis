@@ -108,7 +108,15 @@ void Polynomial<K>::order_polynomial()
 }
 
 template <typename K>
-Polynomial<K> Polynomial<K>::compute_s_polynomial(Polynomial const& p) const
+std::pair<K, Monomial> Polynomial<K>::get_leading_monomial()
+{
+    this->clean_polynomial();
+    this->order_polynomial();
+    return std::pair<K, Monomial>(coef_vec_[0], mono_vec_[0]);
+}
+
+template <typename K>
+Polynomial<K> Polynomial<K>::compute_s_polynomial(Polynomial const& p1, Polynomial const& p2) const
 {
 
 }
